@@ -25,11 +25,9 @@ class Game:
         return self.board.winner()
 
     def select(self, row, col):
-        """wybiera element do przesuniecia"""
         if self.selected:
             result = self._move(row, col)
             if not result:
-                # sprawdza, czy element zostal wybrany
                 self.selected = None
                 self.select(row, col)
         piece = self.board.get_piece(row, col)
@@ -43,8 +41,8 @@ class Game:
     def _move(self, row, col):
         """przesuwa wybrany element"""
         piece = self.board.get_piece(row, col)
-        if self.selected and piece == 0 and (row, col) in self.valid_moves: #sprawdza, czy nowe pole jest puste
-            self.board.move(self.selected, row, col) # przesuwa element na nowe pole, jesli jest puste
+        if self.selected and piece == 0 and (row, col) in self.valid_moves:
+            self.board.move(self.selected, row, col)
             skipped = self.valid_moves[(row, col)]
             if skipped:
                 self.board.remove(skipped)
