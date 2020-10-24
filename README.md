@@ -1,3 +1,3 @@
 # Checkers
 
-CHeckers tutorial by TechWithTim
+Checkers tutorial by TechWithTim
