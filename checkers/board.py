@@ -14,13 +14,6 @@ class Board:
         # draw checker board
         win.fill(BLACK)
         for row in range(ROWS):
-            """
-            rysuje czerwone pola zaczynajac od pierwszego jesli modulo bedzie 0
-            lub od drugiego jesli modulo bedzie 1, i przeskakuje o 2 pola
-            poczatek range - modulo
-            koniec range - ROWS
-            skok - 2
-            """
             for col in range(row % 2, COLS, 2):
                 pygame.draw.rect(win, RED,
                     (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE)
@@ -63,7 +56,6 @@ class Board:
                     piece.draw(win)
 
     def remove(self, pieces):
-        """Usuwa pionek nad ktorym przeskoczyl nasz pionek"""
         for piece in pieces:
             self.board[piece.row][piece.col] = 0
             if piece != 0:
@@ -88,15 +80,6 @@ class Board:
 
         if piece.color == RED or piece.king:
             moves.update(self._traverse_left(row - 1, max(row - 3, -1), -1, piece.color, left))
-            """
-            czerwone ida do gory:
-            row -1 sprawdza rzad bezposrednio nad wybranym elementem
-            max(row-3, -1) - wybiera nawyzsza wartosc - albo dwa rzedy nad wybranym elementem,
-                albo koniec planszy
-            -1 - przesuniecie o tyle rzedow do gory
-            piece.color - kolor wybranego elementu (?)
-            left - pierwszy kierunek przesuniecia elementu
-            """
             moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
 
         if piece.color == WHITE or piece.king:
@@ -130,10 +113,8 @@ class Board:
                     moves.update(self._traverse_right(r+step, row, step, color, left+1, skipped=last))
                 break
             elif current.color == color:
-                #jesli pole jest zajete przez ten sam kolor - nie mozemy sie ruszac
                 break
             else:
-                #w pozostalych przypadkach sprawdza, czy kolejne pole jest puste, zeby przeskoczyc nad elementem przeciwnika
                 last = [current]
 
             left -= 1
@@ -165,11 +146,9 @@ class Board:
                     moves.update(self._traverse_right(r+step, row, step, color, right+1, skipped=last))
                 break
             elif current.color == color:
-                #jesli pole jest zajete przez ten sam kolor - nie mozemy sie ruszac
                 break
             else:
-                #w pozostalych przypadkach sprawdza, czy kolejne pole jest puste, zeby przeskoczyc nad elementem przeciwnika
-                last = [current]
+                  last = [current]
 
             right += 1
 
