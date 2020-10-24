@@ -96,7 +96,7 @@ class Board:
                 break
 
             current = self.board[r][left]
-            if current == 0: #jesli znalazl puste pole
+            if current == 0:
                 if skipped and not last:
                     break
                 elif skipped:
@@ -129,7 +129,7 @@ class Board:
                 break
 
             current = self.board[r][right]
-            if current == 0: #jesli znalazl puste pole
+            if current == 0: 
                 if skipped and not last:
                     break
                 elif skipped:
