@@ -39,7 +39,6 @@ class Game:
         return False
 
     def _move(self, row, col):
-        """przesuwa wybrany element"""
         piece = self.board.get_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             self.board.move(self.selected, row, col)
